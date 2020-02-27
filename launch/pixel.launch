@@ -1,0 +1,7 @@
+<launch>
+    <!--Publish camera info for Pixel3a-->
+    <node name="pixel3a_camera_info" pkg="virtual_camera" type="camera_info_publisher">
+        <param name="camera_info" value="$(find virtual_camera)/config/pixel3a.yaml" />
+        <param name="image_topic" value="/client/camera/image_raw/compressed" />
+    </node>
+</launch>

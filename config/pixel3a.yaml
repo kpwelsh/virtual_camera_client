@@ -1,0 +1,12 @@
+camera_model: pinhole
+distortion_model: pinhole-radtan
+distortion_coefficients: [0.21748299, -0.7069016,  -0.00109114,  0.00309021]
+camera_matrix: [521.20892678, 0,           323.29309662, 
+                  0,          521.78875505, 240.55253981,
+                  0,            0,          1]
+rectification_matrix: [1,0,0,0,1,0,0,0,1]
+projection_matrix: [521.20892678, 0,           323.29309662, 0,
+                  0,          521.78875505, 240.55253981,    0,
+                  0,            0,          1,               0]
+image_width: 640
+image_height: 480

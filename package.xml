@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>virtual_camera_client</name>
+    <version>1.0.0</version>
+    <description>
+        Ros node for publishing camera image and info from tablets 
+    </description>
+    <maintainer email="wisconsinhci@gmail.com">Mike H., Kevin W., Tim L., Luis M., Emmanuel S.</maintainer>
+    <license>WTFPL</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>rospy</depend>
+
+</package>
