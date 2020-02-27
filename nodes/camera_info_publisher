@@ -13,7 +13,7 @@ This file just extends that parser into a rosnode.
 import rospy
 import yaml
 from sensor_msgs.msg import CameraInfo
-from sensor_msgs.msg import Image
+from sensor_msgs.msg import CompressedImage
 
 def yaml_to_CameraInfo(yaml_fname):
     """
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     imageTopic = rospy.get_param('~image_topic')
     camera_info_msg = yaml_to_CameraInfo(filename)
 
-    subscriber = rospy.Subscriber(imageTopic, Image, onImagePublished)
+    subscriber = rospy.Subscriber(imageTopic, CompressedImage, onImagePublished)
 
     # Run publisher
     rospy.spin()

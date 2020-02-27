@@ -1,13 +1,22 @@
 #!/usr/bin/env python
 import rospy
 from sensor_msgs.msg import CompressedImage
+from std_msgs.msg import Bool
 from cv_bridge import CvBridge
 import cv2
 
+
+isOn = True
+def setOnOff(on):
+    global isOn
+    isOn = on.data
+    return 
+
 rospy.init_node('camera_publisher')
-rate = float(rospy.get_param('rate'))
-deviceId = int(rospy.get_param('device_id', 0))
+rate = float(rospy.get_param('~rate'))
+deviceId = int(rospy.get_param('~device_id', 0))
 pub = rospy.Publisher('/client/camera/image_raw/compressed', CompressedImage, queue_size=1)
+sub = rospy.Subscriber('/client/camera/setOnOff', Bool, setOnOff)
 
 videoFeed = cv2.VideoCapture(deviceId)
 if not videoFeed.isOpened():
@@ -16,10 +25,11 @@ if not videoFeed.isOpened():
 
 bridge = CvBridge()
 while not rospy.is_shutdown():
-    success, img = videoFeed.read()
-    if not success:
-        rospy.logwarn("Failed to read image.")
-    else:
-        msg = bridge.cv2_to_compressed_imgmsg(img)
-        pub.publish(msg)
+    if isOn:
+        success, img = videoFeed.read()
+        if not success:
+            rospy.logwarn("Failed to read image.")
+        else:
+            msg = bridge.cv2_to_compressed_imgmsg(img)
+            pub.publish(msg)
     rospy.Rate(rate)
