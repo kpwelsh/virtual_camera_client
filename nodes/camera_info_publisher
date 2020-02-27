@@ -47,7 +47,7 @@ def yaml_to_CameraInfo(yaml_fname):
     return camera_info_msg
 
 
-publisher = rospy.Publisher("/cam0/camera_info", CameraInfo, queue_size=10)
+publisher = rospy.Publisher("/client/camera/camera_info", CameraInfo, queue_size=10)
 camera_info_msg = None
 def onImagePublished(image):
     camera_info_msg.header.stamp = image.header.stamp

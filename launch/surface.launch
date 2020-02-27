@@ -1,4 +1,5 @@
 <launch>
+    <arg name="device_id" default_value="0"/>
     <!--Publish camera info for Surface pro 6-->
     <node name="surface_pro_6_info" pkg="virtual_camera_client" type="camera_info_publisher">
         <param name="camera_info" value="$(find virtual_camera_client)/config/surface_pro_6.yaml" />
@@ -6,7 +7,7 @@
     </node>
 
     <node name="client_camera" pkg="virtual_camera_client" type="camera_publisher">
-        <param name="device_id" value="0" />
+        <param name="device_id" value="$(arg device_id)" />
         <param name="rate" value="25" />
     </node>
 

@@ -31,5 +31,8 @@ while not rospy.is_shutdown():
             rospy.logwarn("Failed to read image.")
         else:
             msg = bridge.cv2_to_compressed_imgmsg(img)
+            header = rospy.Header()
+            header.stamp = rospy.Time.now()
+            msg.header = header
             pub.publish(msg)
     rospy.Rate(rate)

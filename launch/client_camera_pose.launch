@@ -1,0 +1,9 @@
+<launch>
+    <node name="uncompress_client" pkg="image_transport" type="republish" args="compressed in:=/client/camera/image_raw raw out:=/client/camera/image_raw">
+    </node>
+
+    <include file="$(find ros_markers)/launch/detect.launch">
+        <arg name="default_marker_size" value="79"/>
+        <arg name="image_topic" value="/client/camera/image_raw"/>
+    </include>
+</launch>
